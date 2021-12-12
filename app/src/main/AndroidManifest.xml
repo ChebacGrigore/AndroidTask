@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.coursapp">
+
+    <application
+        android:configChanges="orientation|screenSize"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_demo"
+        android:label="Upgrade Life"
+        android:roundIcon="@mipmap/ic_launcher_demo_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".CreateTask"
+            android:exported="true"
+            />
+        <activity
+            android:name=".UpdateActivity"
+            android:exported="true"
+            />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
