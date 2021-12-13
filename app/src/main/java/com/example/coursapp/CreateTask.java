@@ -31,11 +31,14 @@ public class CreateTask extends AppCompatActivity implements TimePickerFragment.
         setContentView(R.layout.activity_display_message);
 
         displayTime = findViewById(R.id.task_info_msg_time);
+
         displayDate = findViewById(R.id.task_info_msg_date);
 
 
+
         timeBtn = findViewById(R.id.choose_time);
-        timeBtn.setOnClickListener(v -> onCreateTimeDialog(null));
+        timeBtn.setOnClickListener(v -> onCreateTimeDialog(null)
+        );
 
         dateBtn = findViewById(R.id.choose_date);
         dateBtn.setOnClickListener(v -> onCreateDateDialog(null));
@@ -46,6 +49,34 @@ public class CreateTask extends AppCompatActivity implements TimePickerFragment.
         saveBtn = findViewById(R.id.save_task);
         saveBtn.setOnClickListener(v -> saveTask(null));
 
+
+        displayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (displayDate.getVisibility() == View.VISIBLE) {
+                    updateDate(v);
+                }
+            }
+        });
+
+        displayTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (displayTime.getVisibility() == View.VISIBLE) {
+                    updateTime(v);
+                }
+            }
+        });
+
+    }
+
+
+    public void updateDate(View v) {
+        onCreateDateDialog(v);
+    }
+
+    public void updateTime(View v) {
+        onCreateTimeDialog(v);
     }
 
     public void onCreateTimeDialog(View view) {
@@ -70,30 +101,30 @@ public class CreateTask extends AppCompatActivity implements TimePickerFragment.
         } else {
            min = "" + minute;
         }
-
         if(hour < 10) {
             hr = "0" + hour;
         } else {
             hr = "" + hour;
         }
-
         String timeFull = getString(R.string.time,hr + ":" + min);
-
+        timeBtn.setVisibility(View.INVISIBLE);
         displayTime.setText(timeFull);
         displayTime.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     public void onDateSet(DatePicker date, int year, int month, int dayOfMonth) {
 
         if(month + 1 >= 10) {
-            displayDate.setText(year + "-" + (month + 1) + "-" + "-" + dayOfMonth);
+            displayDate.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         } else {
             displayDate.setText(year + "-" + "0" + (month + 1) + "-" + dayOfMonth);
         }
 
 
         String dateFull = getString(R.string.date,displayDate.getText().toString());
+        dateBtn.setVisibility(View.INVISIBLE);
         displayDate.setText(dateFull);
         displayDate.setVisibility(View.VISIBLE);
     }

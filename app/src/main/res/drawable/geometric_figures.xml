@@ -1,6 +1,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval"
-    android:tint="@color/redC57676"
+    android:tint="@color/my_favorite_color"
     android:visible="false"
     >
 

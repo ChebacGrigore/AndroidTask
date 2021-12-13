@@ -89,7 +89,7 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
     public void onDateSet(DatePicker date, int year, int month, int dayOfMonth) {
 
         if(month + 1 >= 10) {
-            show_date.setText(year + "-" + (month + 1) + "-" + "-" + dayOfMonth);
+            show_date.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         } else {
             show_date.setText(year + "-" + "0" + (month + 1) + "-" + dayOfMonth);
         }
