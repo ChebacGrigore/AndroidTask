@@ -9,5 +9,7 @@
     <color name="white">#A8A8A8</color>
     <color name="redC57676">#BFE88989</color>
     <color name="blue_easy">#F2FBFF</color>
+    <color name="blue_easy_two">#99D4F2FF</color>
     <color name="gray_easy">#8F8F8F</color>
+    <color name="my_favorite_color">#e9b7b7</color>
 </resources>

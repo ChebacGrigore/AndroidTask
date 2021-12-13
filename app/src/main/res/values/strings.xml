@@ -5,7 +5,8 @@
     <string name="shar_pref">+</string>
     <string name="put_your_a_task">Put your a task</string>
     <string name="test_string">Test Shared_Pref</string>
-    <string name="date">date: %1$s</string>
-    <string name="time">time: %1$s</string>
+    <string name="date">%1$s</string>
+    <string name="time">%1$s</string>
     <string name="put_you_task">Put you task</string>
+    <string name="put_your_a_task_up">PUT YOUR A TASK</string>
 </resources>

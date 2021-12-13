@@ -5,73 +5,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_easy"
+    android:background="@color/blue_easy_two"
     tools:context=".CreateTask"
     >
 
+
     <TextView
         android:id="@+id/task_info_msg_time"
-        android:layout_width="wrap_content"
+        android:layout_width="122dp"
         android:layout_height="48dp"
-        android:background="@color/redC57676"
+        android:background="@drawable/textview_border"
         android:gravity="center"
-        android:paddingLeft="10sp"
-        android:paddingRight="10sp"
         android:text="@string/time"
         android:textSize="20sp"
-
-        android:visibility="visible"
-
-        app:layout_constraintBottom_toTopOf="@+id/save_task"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        android:fontFamily="@font/alma_alternates"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintStart_toStartOf="@id/choose_time"
+        app:layout_constraintBottom_toBottomOf="@id/choose_time"
+        app:layout_constraintVertical_bias="1"/>
 
     <TextView
+
         android:id="@+id/task_info_msg_date"
-        android:layout_width="wrap_content"
+        android:layout_width="122dp"
         android:layout_height="48dp"
-        android:background="@color/redC57676"
+        android:background="@drawable/textview_border"
         android:gravity="center"
-        android:paddingLeft="10sp"
-        android:paddingRight="10sp"
         android:text="@string/date"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/save_task"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/alma_alternates"
+        app:layout_constraintEnd_toEndOf="@id/choose_date"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintBottom_toBottomOf="@id/choose_date"
+        app:layout_constraintVertical_bias="1"/>
 
     <ImageButton
-        android:id="@+id/choose_time"
-        android:layout_width="139dp"
-        android:layout_height="133dp"
-        android:background="@drawable/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck" />
-    <ImageButton
-
         android:id="@+id/choose_date"
         android:layout_width="139dp"
         android:layout_height="133dp"
-        android:background="@drawable/right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:background="@drawable/left_final"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck" />
+       />
+
+    <ImageButton
+
+        android:id="@+id/choose_time"
+        android:layout_width="139dp"
+        android:layout_height="133dp"
+        android:background="@drawable/right_final"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/save_task"
@@ -92,15 +78,17 @@
         android:id="@+id/text_task"
         android:layout_width="312dp"
         android:layout_height="88dp"
-        android:ems="10"
+        android:background="@null"
+        android:fontFamily="@font/alma_alternates"
         android:gravity="center"
-        android:hint="@string/put_you_task"
+        android:hint="@string/put_your_a_task_up"
+        android:textSize="35sp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/save_task"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711" />
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
