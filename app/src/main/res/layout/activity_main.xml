@@ -39,6 +39,7 @@
         android:elevation="50sp"
         android:focusable="true"
         android:padding="10dp"
+
         android:src="@drawable/ic_plus_svgrepo_com"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

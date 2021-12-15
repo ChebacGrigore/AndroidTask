@@ -1,6 +1,7 @@
 package com.example.coursapp;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -18,8 +19,8 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
         DatePickerFragment.DatePickerListener {
 
 
-    ImageView choose_date, choose_time, update_task;
-    TextView show_date, show_time, show_purpose;
+    ImageView  update_task, test_delete;
+    TextView choose_date, choose_time, show_purpose;
 
     String id, date, time, purpose;
 
@@ -28,24 +29,34 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_update);
 
-        choose_date = findViewById(R.id.choose_date2);
-        choose_time = findViewById(R.id.choose_time2);
+        choose_date = findViewById(R.id.task_info_msg_date2);
+        choose_time = findViewById(R.id.task_info_msg_time2);
         update_task = findViewById(R.id.save_task2);
+        test_delete = findViewById(R.id.test_delete);
 
-        show_date   = findViewById(R.id.task_info_msg_date2);
-        show_time   = findViewById(R.id.task_info_msg_time2);
+
+
         show_purpose = findViewById(R.id.text_task2);
 
 
         getAndSetIntentDate();
 
+        test_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteOneRow(id);
+                finish();
+            }
+        });
+
         choose_time.setOnClickListener(this::onCreateTimeDialog);
         choose_date.setOnClickListener(this::onCreateDateDialog);
+
         update_task.setOnClickListener(v -> {
 
             purpose = show_purpose.getText().toString();
-            date = show_date.getText().toString();
-            time = show_time.getText().toString();
+            date = choose_date.getText().toString();
+            time = choose_time.getText().toString();
             MyDatabaseHelper myDb = new MyDatabaseHelper(UpdateActivity.this);
             myDb.updateRow(id,purpose,date,time);
             Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
@@ -65,8 +76,8 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
             purpose = getIntent().getStringExtra("purpose");
 
             //Setting data
-            show_date.setText(date);
-            show_time.setText(time);
+            choose_date.setText(date);
+            choose_time.setText(time);
             show_purpose.setText(purpose);
 
         } else {
@@ -89,15 +100,14 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
     public void onDateSet(DatePicker date, int year, int month, int dayOfMonth) {
 
         if(month + 1 >= 10) {
-            show_date.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
+            choose_date.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         } else {
-            show_date.setText(year + "-" + "0" + (month + 1) + "-" + dayOfMonth);
+            choose_date.setText(year + "-" + "0" + (month + 1) + "-" + dayOfMonth);
         }
 
 
-        String dateFull = getString(R.string.date,show_date.getText().toString());
-        show_date.setText(dateFull);
-        show_date.setVisibility(View.VISIBLE);
+        String dateFull = getString(R.string.date,choose_date.getText().toString());
+        choose_date.setText(dateFull);
     }
 
     @Override
@@ -116,7 +126,12 @@ public class UpdateActivity  extends AppCompatActivity implements TimePickerFrag
             hr = "" + hour;
         }
         String timeFull = getString(R.string.time,hr + ":" + min);
-        show_time.setText(timeFull);
-        show_time.setVisibility(View.VISIBLE);
+        choose_time.setText(timeFull);
+    }
+
+    public void deleteOneRow(String row_id) {
+
+        MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+        myDB.deleteOnRow(row_id);
     }
 }

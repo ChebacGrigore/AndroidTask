@@ -50,7 +50,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         this.position = position;
 
-        holder.task_id_txt.setText(String.valueOf(task_id.get(position)));
+       // holder.task_id_txt.setText(String.valueOf(task_id.get(position)));
         holder.task_date_txt.setText(String.valueOf(task_date.get(position)));
         holder.task_time_txt.setText(String.valueOf(task_time.get(position)));
         holder.task_purpose_txt.setText(String.valueOf(purpose_text.get(position)));
@@ -70,7 +70,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
     @Override
     public int getItemCount() {
-
         return task_id.size();
     }
 
@@ -82,7 +81,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            task_id_txt   = itemView.findViewById(R.id.task_id_adp);
+            //task_id_txt   = itemView.findViewById(R.id.task_id_adp);
             task_date_txt = itemView.findViewById(R.id.task_date_adp);
             task_time_txt = itemView.findViewById(R.id.task_time_adp);
             task_purpose_txt   = itemView.findViewById(R.id.purpose_text_adp);
