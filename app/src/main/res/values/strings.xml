@@ -9,4 +9,6 @@
     <string name="time">%1$s</string>
     <string name="put_you_task">Put you task</string>
     <string name="put_your_a_task_up">PUT YOUR A TASK</string>
+    <string name="channel_id">test_channel</string>
+    <string name="channel_description">test_description</string>
 </resources>

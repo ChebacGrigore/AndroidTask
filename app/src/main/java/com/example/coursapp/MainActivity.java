@@ -2,15 +2,25 @@ package com.example.coursapp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button;
+    private Button nty;
     private RecyclerView recyclerView;
 
 
@@ -31,10 +42,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name  = getString(R.string.channel_id);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel notificationChannel = new NotificationChannel(getString(R.string.channel_id),
+                    name,importance);
+            notificationChannel.setDescription("test_set_description");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
 
         button = findViewById(R.id.create_task);
         button.setOnClickListener(v -> createTask());
 
+        nty = findViewById(R.id.notify);
+        nty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testNotification();
+            }
+        });
 
         recyclerView = findViewById(R.id.recycle_view);
         myDB = new MyDatabaseHelper(MainActivity.this);
@@ -83,6 +111,30 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void testNotification() {
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,
+                getString(R.string.channel_id))
+                .setSmallIcon(R.drawable.left_btn)
+                .setContentTitle("Prikolno")
+                .setContentText("hz iiia proverim")
+                .setPriority(NotificationCompat.PRIORITY_MAX);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(MainActivity.this);
+        notificationManagerCompat.notify(123, builder.build());
+    }
+
+    public void createNotificationChannel(){
+
+
+    }
+
+    public void showTestNotification() {
+
+
+    }
+
 
 }
 
