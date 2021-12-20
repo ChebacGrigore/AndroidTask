@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         nty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testNotification();
+
             }
         });
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = myDB.readAllData();
 
         if(cursor.getCount() == 0) {
-
+            testNotification();
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
@@ -114,20 +114,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void testNotification() {
 
+        Intent notifyIntent = new Intent(this, MainActivity.class);
+        // Set the Activity to start in a new, empty task
+                notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // Create the PendingIntent
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,
                 getString(R.string.channel_id))
                 .setSmallIcon(R.drawable.left_btn)
                 .setContentTitle("Prikolno")
                 .setContentText("hz iiia proverim")
-                .setPriority(NotificationCompat.PRIORITY_MAX);
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setContentIntent(notifyPendingIntent)
+                .setAutoCancel(true);;
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(MainActivity.this);
         notificationManagerCompat.notify(123, builder.build());
-    }
-
-    public void createNotificationChannel(){
-
-
     }
 
     public void showTestNotification() {
